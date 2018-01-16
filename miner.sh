@@ -11,7 +11,7 @@ SKMIN=`ps -eaf | grep -i minergate-cli | grep -iv grep |wc -l`
                 HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
                 echo "SUBJECT:Miner is started in $HOSTPUBIP at rate of $HRATE per second " |sendmail iamsachinrajput@gmail.com
         else
-                sleep 60
+                sleep 90
                 HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
 
                         if [ $HRATE -gt 2 ]
