@@ -1,4 +1,4 @@
-HOSTPUBIP=`hostname`
+HOSTPUBIP=`ec2metadata --public-hostname|awk '{print $2}'`
 while [ 1 -eq 1 ]
 do
 
