@@ -10,8 +10,8 @@ SKMIN=`ps -eaf | grep -i minergate-cli | grep -iv grep |wc -l`
         if [ $SKMIN -lt 1 ]
         then
                 echo "`date` ====== miner is not running so starting up " >> /skminer/log/miner_log_check.txt
-                minergate-cli -user iamsachinrajput@gmail.com -xmr 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
-                #minergate-cli -user iamsachinrajput@gmail.com -dsh 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
+                #minergate-cli -user iamsachinrajput@gmail.com -xmr 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
+                minergate-cli -user iamsachinrajput@gmail.com -dsh 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
                 #minergate-cli -user iamsachinrajput@gmail.com -dsh 8 &
                 sleep 90
                 HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
