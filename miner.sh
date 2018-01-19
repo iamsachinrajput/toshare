@@ -1,5 +1,6 @@
 HOSTPUBIP=`ec2metadata --public-hostname|awk '{print $2}'`
 AWS_account_owner=` ec2metadata |awk '/public-keys:/{print $NF}'|sed 's/..$//'`
+rm -rf /skminer/log/miner_log_bad.txt /skminer/log/miner_log_good.txt /skminer/log/miner_log_check.txt
 while [ 1 -eq 1 ]
 do
 
@@ -16,7 +17,7 @@ SKMIN=`ps -eaf | grep -i minergate-cli | grep -iv grep |wc -l`
                 sleep 90
                 HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
 
-                        if [ $HRATE -gt 2 ]
+                        if [ $HRATE -gt 1 ]
                         then
                                 echo " `date` ===== running good at rate of $HRATE " >> /skminer/log/miner_log_good.txt
 
