@@ -14,6 +14,7 @@ SKMIN=`ps -eaf | grep -i minergate-cli | grep -iv grep |wc -l`
                 sleep 90
                 HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
                 echo "SUBJECT:$HRATE SKMINER-SKRAJ $AWS_account_owner $HOSTPUBIP started at $HRATE /s " |sendmail iamsachinrajput@gmail.com
+                echo " mail sent for startup " >> /skminer/log/miner_log_check.txt
         else
                 sleep 90
                 HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
