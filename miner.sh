@@ -1,6 +1,8 @@
 HOSTPUBIP=`ec2metadata --public-hostname|awk '{print $2}'`
 AWS_account_owner=` ec2metadata |awk '/public-keys:/{print $NF}'|sed 's/..$//'`
-rm -rf /skminer/log/miner_log_bad.txt /skminer/log/miner_log_good.txt /skminer/log/miner_log_check.txt
+echo "" > /skminer/log/miner_log_bad.txt 
+echo "" > /skminer/log/miner_log_good.txt 
+echo "" > /skminer/log/miner_log_check.txt
 while [ 1 -eq 1 ]
 do
 
