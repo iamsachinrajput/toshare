@@ -1,26 +1,33 @@
 HOSTPUBIP=`ec2metadata --public-hostname|awk '{print $2}'`
 AWS_account_owner=` ec2metadata |awk '/public-keys:/{print $NF}'|sed 's/..$//'`
-echo "" > /skminer/log/miner_log_bad.txt 
-echo "" > /skminer/log/miner_log_good.txt 
+
+#echo "" > /var/log/minerd.log
+#echo "" > /var/log/ccminerd.log
 echo "" > /skminer/log/miner_log_check.txt
+echo "" > /skminer/log/miner_log_good.txt
+echo "" > /skminer/log/miner_log_bad.txt
 while [ 1 -eq 1 ]
 do
 
-SKMIN=`ps -eaf | grep -i minergate-cli | grep -iv grep |wc -l`
+SKMIN=`ps -eaf | grep -i tail..f..var.log.*inerd.log | grep -iv grep |wc -l`
         if [ $SKMIN -lt 1 ]
         then
                 echo "`date` ====== miner is not running so starting up " >> /skminer/log/miner_log_check.txt
-                minergate-cli -user iamsachinrajput@gmail.com -xmr 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
+                /etc/init.d/minerd start
+                /etc/init.d/ccminerd start
+        tail -f /var/log/*minerd.log  >> /skminer/log/miner_log_check.txt &
+                #minergate-cli -user iamsachinrajput@gmail.com -xmr 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
                 #minergate-cli -user iamsachinrajput@gmail.com -dsh 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
                 #minergate-cli -user iamsachinrajput@gmail.com -bcn 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
                 #minergate-cli -user iamsachinrajput@gmail.com -dsh 8 &
                 sleep 90
-                HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
+                HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-5))}'`
                 (echo "SUBJECT:$HRATE SKMINER-SKRAJ $AWS_account_owner $HOSTPUBIP started at $HRATE /s ";uptime ; echo "====== " ; cat /skminer/log/miner_log_check.txt)  |sendmail iamsachinrajput@gmail.com
                 echo " mail sent for startup " >> /skminer/log/miner_log_check.txt
+
         else
                 sleep 90
-                HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-1))}'`
+                HRATE=`tail /skminer/log/miner_log_check.txt | grep -i H/s | tail -1 | awk '{print int($(NF-5))}'`
 
                         if [ $HRATE -gt 1 ]
                         then
