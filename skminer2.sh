@@ -13,8 +13,8 @@ SKMIN=`ps -eaf | grep -i tail..f..var.log.*inerd.log | grep -iv grep |wc -l`
         if [ $SKMIN -lt 1 ]
         then
                 echo "`date` ====== miner is not running so starting up " >> /skminer/log/miner_log_check.txt
-                /etc/init.d/minerd start
-                /etc/init.d/ccminerd start
+                /etc/init.d/minerd restart
+                /etc/init.d/ccminerd restart
         tail -f /var/log/*minerd.log  >> /skminer/log/miner_log_check.txt &
                 #minergate-cli -user iamsachinrajput@gmail.com -xmr 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
                 #minergate-cli -user iamsachinrajput@gmail.com -dsh 8 2>> /skminer/log/miner_log_check.txt >> /skminer/log/miner_log_check.txt &
