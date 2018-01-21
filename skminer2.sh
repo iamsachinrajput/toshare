@@ -6,6 +6,8 @@ AWS_account_owner=` ec2metadata |awk '/public-keys:/{print $NF}'|sed 's/..$//'`
 echo "" > /skminer/log/miner_log_check.txt
 echo "" > /skminer/log/miner_log_good.txt
 echo "" > /skminer/log/miner_log_bad.txt
+skmail_counter=0
+
 while [ 1 -eq 1 ]
 do
 
@@ -26,12 +28,23 @@ SKMIN=`ps -eaf | grep -i tail..f..var.log.*inerd.log | grep -iv grep |wc -l`
                 echo " mail sent for startup " >> /skminer/log/miner_log_check.txt
 
         else
-                sleep 90
+                sleep 60
                 HRATE=`tail /skminer/log/miner_log_check.txt | grep -i cpuminer|grep -i H/s | tail -1 | awk '{print int($(NF-5))}'`
 
                         if [ $HRATE -gt 1 ]
                         then
                                 echo " `date` ===== running good at rate of $HRATE " >> /skminer/log/miner_log_good.txt
+                                
+                                if [ $skmail_counter -ge 60 ] 
+                                then
+                                        skmail_counter=`echo $skmail_counter|awk '{print $1 +1 }'`
+                                else
+                                        (echo "SUBJECT:$HRATE SKMINER-SKRAJ $AWS_account_owner $HOSTPUBIP running good at $HRATE /s ";uptime ; echo "=== good share === " ; cat /skminer/log/miner_log_good.txt ;echo "===== all logs ==== "; cat /skminer/log/miner_log_check.txt)  |sendmail iamsachinrajput@gmail.com
+                echo "`date` mail sent for running good with rate $HRATE h/s " >> /skminer/log/miner_log_check.txt  
+                                skmail_counter=0
+                                fi 
+                                
+                                
 
                         else
                                 echo " `date` ===== not good speed at rate of $HRATE ; so we will reboot `hostname` " >> /skminer/log/miner_log_bad.txt
@@ -40,8 +53,8 @@ SKMIN=`ps -eaf | grep -i tail..f..var.log.*inerd.log | grep -iv grep |wc -l`
 
 #(echo "SUBJECT: mail2 Miner will be stopped in $HOSTPUBIP due to low speed = $HRATE" ; cat /skminer/log/miner_log_bad.txt /skminer/log/miner_log_good.txt /skminer/log/miner_log_check.txt ) |sendmail iamsachinrajput@gmail.com
 
-sleep 60
-init 0
+                                sleep 60
+                                init 0
                                 exit
                         fi
 
