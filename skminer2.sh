@@ -41,7 +41,7 @@ SKMIN=`ps -eaf | grep -i tail..f..var.log.*inerd.log | grep -iv grep |wc -l`
 #(echo "SUBJECT: mail2 Miner will be stopped in $HOSTPUBIP due to low speed = $HRATE" ; cat /skminer/log/miner_log_bad.txt /skminer/log/miner_log_good.txt /skminer/log/miner_log_check.txt ) |sendmail iamsachinrajput@gmail.com
 
 sleep 60
-#init 0
+init 0
                                 exit
                         fi
 
