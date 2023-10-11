@@ -5,6 +5,58 @@ src="https://img.shields.io/github/followers/iamsachinrajput?logo=github&style=f
 
 <img align=center width=100% src="https://readme-typing-svg.herokuapp.com?font=Sora&color=%2336BCF7&size=30&center=true&vCenter=true&width=600%&lines=DevOps+Automation+Architect;HPUX+And+Linux+Expert;17+Years+experience;Blueprints+Developement;of+Infra+As+Code;AWS+GCP+Cloud+Certified;Ansible+Epxpert;Expertise+in+Customised+Automation" />
 
+
+## Work Experience
+
+### Company Name (Month Year - Present)
+- **Position:** Your Job Title
+- **Location:** City, State
+- **Description:** Brief description of your responsibilities, projects, and achievements in this role.
+
+### Another Company (Month Year - Month Year)
+- **Position:** Another Job Title
+- **Location:** City, State
+- **Description:** Details of your responsibilities, projects, and notable accomplishments at this company.
+
+## Projects
+
+### Project Name (Month Year - Month Year)
+- **Description:** A short description of the project.
+- **Technologies Used:** List the technologies and tools you used in this project.
+- **Your Role:** Describe your role and contributions in the project.
+- **Achievements:** Mention any significant achievements or outcomes from this project.
+
+### Another Project (Month Year - Month Year)
+- **Description:** Briefly explain this project.
+- **Technologies Used:** List the technologies you worked with.
+- **Your Role:** Describe your responsibilities and contributions.
+- **Outcomes:** Highlight any results or impacts achieved.
+
+## Education
+
+### University Name (Month Year - Month Year)
+- **Degree:** Your degree, e.g., Bachelor of Science
+- **Major:** Your major or field of study
+- **Honors/Awards:** Any academic honors or awards you received.
+
+## Certifications
+
+### Certification Name (Month Year)
+- **Issued By:** The organization that issued the certification
+- **Description:** A short description of the certification and its relevance.
+
+## Skills
+- **Issued By:** The organization that issued the certification
+- List key skills, technologies, or programming languages you're proficient in.
+- You can use bullet points or create a tag cloud for a visually appealing display.
+
+- **Description:** A short description of the certification and its relevance.
+
+- List key skills, technologies, or programming languages you're proficient in.
+- You can use bullet points or create a tag cloud for a visually appealing display.
+
+
+
 <hr>
 <table>
   <tr><th>## Skills</th></tr>
